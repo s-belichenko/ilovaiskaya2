@@ -1,0 +1,36 @@
+# Название рабочего процесса
+name: Основной процесс
+
+# События, запускающие процесс
+on:
+  # Git push в ветку main
+  push:
+    branches:
+      - main
+
+# Задания
+jobs:
+  # Название задания
+  Main-Job:
+    # Запускать на последней версии Ubuntu
+    runs-on: ubuntu-latest
+
+    # Шаги
+    steps:
+      # Загрузить код репозитория в окружение
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Сгенерируем билд из файлов проекта
+      - name: Build
+        run: mkdir -p build && cp ./template/index.html ./build/index.html
+
+      # Разместить содержимое ./build в корень ветки GitHub Pages текущего репозитория
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Передача токена рабочего процесса во внешнее действие
+          # Не требует отдельной настройки секретов, токен передаётся автоматически
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Выбор папки билда
+          publish_dir: ./build
