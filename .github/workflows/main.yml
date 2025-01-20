@@ -34,3 +34,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Выбор папки билда
           publish_dir: ./build
+          cname: ilovaiskaya2.homes
