@@ -23,7 +23,7 @@ jobs:
 
       # Сгенерируем билд из файлов проекта
       - name: Build
-        run: mkdir -p build && cp ./template/index.html ./build/index.html
+        run: mkdir -p build && cp -R ./template/* ./build/
 
       # Разместить содержимое ./build в корень ветки GitHub Pages текущего репозитория
       - name: Deploy
