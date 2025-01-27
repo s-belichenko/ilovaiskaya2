@@ -1,4 +1,4 @@
-.timer {
+#timer {
   & > div {
     margin-top: 42px;
     white-space: nowrap;
